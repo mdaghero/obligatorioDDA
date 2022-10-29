@@ -2,8 +2,7 @@
 package obligatoriodda.modelo;
 
 
-public class TipoCliente {
-    
+public class Gestores extends TipoCliente {
     
     
     

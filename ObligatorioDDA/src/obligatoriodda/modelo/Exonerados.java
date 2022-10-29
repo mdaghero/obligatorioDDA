@@ -2,8 +2,7 @@
 package obligatoriodda.modelo;
 
 
-public class TipoCliente {
-    
+public class Exonerados extends TipoCliente {
     
     
     
