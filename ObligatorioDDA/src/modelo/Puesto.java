@@ -1,4 +1,4 @@
-package obligatoriodda.modelo;
+package modelo;
 
 import java.util.ArrayList;
 
@@ -44,4 +44,13 @@ public class Puesto {
         this.llamadasAtendidas = llamadasAtendidas;
     }
 
+    public double calcularPromedio(){
+        double acum = 0;
+        for(Llamada ll: llamadasAtendidas){
+            acum += ll.getDuracion();
+        }
+        return acum / llamadasAtendidas.size();
+    }
+    
+    
 }
