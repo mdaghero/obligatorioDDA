@@ -1,5 +1,5 @@
 
-package obligatoriodda.modelo;
+package modelo;
 
 
 public class Trabajador {
