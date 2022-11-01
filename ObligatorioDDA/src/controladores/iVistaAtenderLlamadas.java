@@ -1,8 +1,7 @@
 
 package controladores;
 
-
-public interface VistaLogin {
+public interface iVistaAtenderLlamadas {
     
     
     
