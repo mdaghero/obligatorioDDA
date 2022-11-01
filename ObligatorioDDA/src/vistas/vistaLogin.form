@@ -32,9 +32,9 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="bAtender" max="32767" attributes="0"/>
+                  <Component id="bAtender" pref="171" max="32767" attributes="0"/>
                   <Component id="txtCedula" max="32767" attributes="0"/>
-                  <Component id="txtPass" min="-2" pref="171" max="-2" attributes="0"/>
+                  <Component id="txtPass" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="93" max="32767" attributes="0"/>
           </Group>
@@ -73,8 +73,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCedula">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPass">
-    </Component>
     <Component class="javax.swing.JButton" name="bAtender">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atender llamdas"/>
@@ -82,6 +80,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAtenderActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="txtPass">
     </Component>
   </SubComponents>
 </Form>

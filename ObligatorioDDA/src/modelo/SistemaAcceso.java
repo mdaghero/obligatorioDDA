@@ -7,10 +7,6 @@ public class SistemaAcceso {
     ArrayList<Trabajador> trabajadores = new ArrayList<Trabajador>();
 
     public Trabajador Login(String ci, String pwd) {
-        return buscarLogin(ci, pwd);
-    }
-
-    private Trabajador buscarLogin(String ci, String pwd) {
         for (Trabajador trab : trabajadores) {
             if (trab.getCi().equals(ci) && trab.getPass().equals(pwd)) {
                 return trab;

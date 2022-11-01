@@ -1,14 +1,20 @@
-package iGraficas;
+package vistas;
 
-import controladores.VistaLogin;
+import controladores.ControladorLogin;
+import controladores.iVistaLogin;
+import javax.swing.JOptionPane;
+import modelo.Trabajador;
 
-public class iLogin extends javax.swing.JFrame implements VistaLogin {
+public class vistaLogin extends javax.swing.JFrame implements iVistaLogin {
 
     /**
      * Creates new form iLogin
      */
-    public iLogin() {
+    private ControladorLogin controlador;
+    
+    public vistaLogin() {
         initComponents();
+        controlador = new ControladorLogin(this);
     }
 
     /**
@@ -23,8 +29,8 @@ public class iLogin extends javax.swing.JFrame implements VistaLogin {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
-        txtPass = new javax.swing.JTextField();
         bAtender = new javax.swing.JButton();
+        txtPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ingreso");
@@ -51,9 +57,9 @@ public class iLogin extends javax.swing.JFrame implements VistaLogin {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bAtender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bAtender, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                     .addComponent(txtCedula)
-                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPass))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -77,24 +83,27 @@ public class iLogin extends javax.swing.JFrame implements VistaLogin {
 
     private void bAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtenderActionPerformed
 
-//        login();
+        login();
 
 
     }//GEN-LAST:event_bAtenderActionPerformed
 
-//    private void login() {
-//        String ci = tfUsuario.getText();
-//        String pwd = new String(tfPassword.getPassword());
-//        Object u = llamarLogin(nom, pwd);
-//        if (u == null) {
-//            //Error
-//            JOptionPane.showMessageDialog(this, "Login incorrecto");
-//        } else {
-//            //Proximo caso de uso
-//            dispose();
-//            proximoCasoUso(u);
-//        }
-//    }
+    private void login() {
+        String ci = txtCedula.getText();
+        String pwd = new String(txtPass.getPassword());
+        Trabajador trabajador = controlador.Login(ci, pwd);
+        if (trabajador == null) {
+            JOptionPane.showMessageDialog(this, "Login incorrecto");
+        } else {
+            if(controlador.asignarPuesto(trabajador)){
+                dispose();
+                controlador.atenderLlamadas(trabajador);
+            }else{
+                JOptionPane.showMessageDialog(this, "No hay puestos disponibles");
+            }
+
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -102,6 +111,6 @@ public class iLogin extends javax.swing.JFrame implements VistaLogin {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtPass;
+    private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }
