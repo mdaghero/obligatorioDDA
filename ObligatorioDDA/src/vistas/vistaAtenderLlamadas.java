@@ -3,16 +3,32 @@ package vistas;
 
 import controladores.ControladorLlamadas;
 import controladores.iVistaAtenderLlamadas;
+import modelo.Puesto;
+import modelo.Sector;
 import modelo.Trabajador;
 
 
 public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaAtenderLlamadas{
 
     private ControladorLlamadas controlador;
+    
+    private Trabajador trabajador;
+    
+    private Sector sector;
+    
+    private Puesto puesto;
+    
  
     public vistaAtenderLlamadas(java.awt.Frame parent, boolean modal, Trabajador trabajador) {
         super(parent, modal);
         initComponents();
+        this.trabajador = trabajador;
+        this.sector = trabajador.getSector();
+        this.puesto = sector.getPuestoPorTrabajador(trabajador);
+        lblTrabajador.setText(trabajador.getNombre());
+        lblSectorYPuesto.setText("Sector: " + sector.getNombre() + " | Puesto Nro. #" + puesto.getNumero());
+        lblLlamadasNumero.setText("0");
+        lblTiempoProm.setText("0");
         setLocationRelativeTo(parent);
         controlador = new ControladorLlamadas(trabajador, this);
     }
@@ -26,17 +42,127 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        lblTrabajador = new javax.swing.JLabel();
+        lblSectorYPuesto = new javax.swing.JLabel();
+        lblLlamadasAtendidas = new javax.swing.JLabel();
+        lblLlamadasNumero = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        lblTiempoProm = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblNombreCliente = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAreaDescripcion = new javax.swing.JTextArea();
+        btnFinalizar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Aplicacion para trabajadores");
+
+        lblTrabajador.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTrabajador.setText("nombre trabajador");
+
+        lblSectorYPuesto.setText("sector: nombreSector |  puesto numero ");
+
+        lblLlamadasAtendidas.setText("<html>Llamadas <br> atendidas</html>");
+
+        lblLlamadasNumero.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblLlamadasNumero.setText("3");
+
+        jLabel1.setText("<html>Tiempo <br> promedio </html>");
+
+        lblTiempoProm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblTiempoProm.setText("67");
+
+        jLabel2.setForeground(new java.awt.Color(51, 102, 0));
+        jLabel2.setText("   Llamada en curso...");
+        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setText("Cliente:");
+
+        lblNombreCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+        jLabel4.setText("Descripcion:");
+
+        txtAreaDescripcion.setColumns(20);
+        txtAreaDescripcion.setRows(5);
+        jScrollPane1.setViewportView(txtAreaDescripcion);
+
+        btnFinalizar.setText("Finalizar Llamada");
+
+        btnSalir.setText("Salir");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnFinalizar)
+                            .addGap(137, 137, 137)
+                            .addComponent(btnSalir))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblTrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblSectorYPuesto, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                                    .addGap(29, 29, 29)
+                                    .addComponent(lblLlamadasAtendidas, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblLlamadasNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblTiempoProm, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jScrollPane1))))))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTrabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSectorYPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(lblLlamadasNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(lblTiempoProm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLlamadasAtendidas))
+                .addGap(48, 48, 48)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFinalizar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -44,5 +170,19 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblLlamadasAtendidas;
+    private javax.swing.JLabel lblLlamadasNumero;
+    private javax.swing.JLabel lblNombreCliente;
+    private javax.swing.JLabel lblSectorYPuesto;
+    private javax.swing.JLabel lblTiempoProm;
+    private javax.swing.JLabel lblTrabajador;
+    private javax.swing.JTextArea txtAreaDescripcion;
     // End of variables declaration//GEN-END:variables
 }

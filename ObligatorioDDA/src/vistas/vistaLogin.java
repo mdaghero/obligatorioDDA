@@ -5,15 +5,18 @@ import controladores.iVistaLogin;
 import javax.swing.JOptionPane;
 import modelo.Trabajador;
 
-public class vistaLogin extends javax.swing.JFrame implements iVistaLogin {
+public class vistaLogin extends javax.swing.JDialog implements iVistaLogin {
 
     /**
      * Creates new form iLogin
      */
     private ControladorLogin controlador;
-    
-    public vistaLogin() {
+
+    public vistaLogin(java.awt.Frame parent, boolean modal, String titulo) {
+        super(parent, modal);
+        setTitle(titulo);
         initComponents();
+        setLocationRelativeTo(parent);
         controlador = new ControladorLogin(this);
     }
 
@@ -32,7 +35,7 @@ public class vistaLogin extends javax.swing.JFrame implements iVistaLogin {
         bAtender = new javax.swing.JButton();
         txtPass = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso");
 
         jLabel1.setText("Cedula: ");
@@ -84,8 +87,6 @@ public class vistaLogin extends javax.swing.JFrame implements iVistaLogin {
     private void bAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtenderActionPerformed
 
         login();
-
-
     }//GEN-LAST:event_bAtenderActionPerformed
 
     private void login() {
@@ -95,10 +96,10 @@ public class vistaLogin extends javax.swing.JFrame implements iVistaLogin {
         if (trabajador == null) {
             JOptionPane.showMessageDialog(this, "Login incorrecto");
         } else {
-            if(controlador.asignarPuesto(trabajador)){
+            if (controlador.asignarPuesto(trabajador)) {
                 dispose();
                 controlador.atenderLlamadas(trabajador);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "No hay puestos disponibles");
             }
 
