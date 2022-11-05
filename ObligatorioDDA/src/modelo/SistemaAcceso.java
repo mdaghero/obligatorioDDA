@@ -22,4 +22,8 @@ public class SistemaAcceso {
         return false;
     }
 
+    void agregarTrabajador(Trabajador trabajador) {
+        trabajadores.add(trabajador);
+    }
+
 }

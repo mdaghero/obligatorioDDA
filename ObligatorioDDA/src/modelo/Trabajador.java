@@ -4,7 +4,7 @@ package modelo;
 
 public class Trabajador {
     
-    private Integer ci;
+    private String ci;
     
     private String pass;
     
@@ -12,14 +12,14 @@ public class Trabajador {
     
     private Sector sector;
 
-    public Trabajador(Integer ci, String pass, Sector sector, String nombre) {
+    public Trabajador(String ci, String pass, Sector sector, String nombre) {
         this.ci = ci;
         this.pass = pass;
         this.sector = sector;
         this.nombre = nombre;
     }
 
-    public Integer getCi() {
+    public String getCi() {
         return ci;
     }
 

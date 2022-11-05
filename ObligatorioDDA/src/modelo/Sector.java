@@ -39,8 +39,6 @@ public class Sector {
     public Integer getCantidadPuestos() {
         return cantidadPuestos;
     }
-
-    
     
     public ArrayList<Llamada> getLlamadasEnEspera() {
         return llamadasEnEspera;
@@ -50,20 +48,62 @@ public class Sector {
         return llamadasAtendidas;
     }
 
-
     public ArrayList<Puesto> getPuestos(){
         return puestos;
     }
     
     public boolean asignarTrabajadorAPuesto(Trabajador trabajador){
         for(Puesto p: puestos){
-            if(p.getTrabajador() != null){
+            if(p.getTrabajador() == null){
                 p.setTrabajador(trabajador);
                 return true;
             }
         }
         return false;
     }
+    
+    public Puesto getPuestoPorTrabajador(Trabajador trabajador){
+        for(Puesto p: puestos){
+            if(p.getTrabajador().equals(trabajador)){
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    public Integer cantidadLlamadasEnCurso(){
+        Integer cant = 0;
+        
+        for(Puesto p: puestos){
+            if(p.getLlamadaEnCurso() != null){
+                cant++;
+            }
+        }
+        return cant + llamadasEnEspera.size();
+    }
+
+    public boolean sectorDisponible() {
+        for(Puesto p: puestos){
+            if(p.getTrabajador() != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean asignarLlamada(Llamada llamada) {
+        for(Puesto p: puestos){
+            if(p.getTrabajador() != null && p.getLlamadaEnCurso() != null){
+                p.setLlamadaEnCurso(llamada);
+                return true;
+            }
+        }
+        this.llamadasEnEspera.add(llamada);
+        return false;
+    }
+    
+    
+    
     
     
 }
