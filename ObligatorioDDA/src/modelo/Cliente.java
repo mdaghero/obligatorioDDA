@@ -6,13 +6,13 @@ public class Cliente {
     
     private TipoCliente tipoCliente;
     
-    private Integer ci;
+    private String ci;
     
     private String nombre;
     
     private Integer saldo;
 
-    public Cliente(TipoCliente tipoCliente, Integer ci, String nombre, Integer saldo) {
+    public Cliente(TipoCliente tipoCliente, String ci, String nombre, Integer saldo) {
         this.tipoCliente = tipoCliente;
         this.ci = ci;
         this.nombre = nombre;
@@ -23,7 +23,7 @@ public class Cliente {
         return tipoCliente;
     }
 
-    public Integer getCi() {
+    public String getCi() {
         return ci;
     }
 

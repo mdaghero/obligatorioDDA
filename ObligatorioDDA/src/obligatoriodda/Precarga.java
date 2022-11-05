@@ -1,6 +1,10 @@
 package obligatoriodda;
 
+import modelo.Cliente;
+import modelo.ConCosto;
+import modelo.Exonerados;
 import modelo.Fachada;
+import modelo.Gestores;
 import modelo.Sector;
 import modelo.Trabajador;
 
@@ -26,8 +30,9 @@ public class Precarga {
         logica.agregarTrabajador(new Trabajador("44444444", "4", sector4, "Ana Gonzalez"));
         logica.agregarTrabajador(new Trabajador("55555555", "5", sector1, "Felipe Garcia"));
 
-
-        
+        logica.agregarCliente(new Cliente(new ConCosto(), "77777777", "Lucia Perez", 2300));
+        logica.agregarCliente(new Cliente(new Exonerados(), "88888888", "Matias Rodriguez", 500));
+        logica.agregarCliente(new Cliente(new Gestores(), "77777777", "Elena Silvera", 1230));
         
     }
 

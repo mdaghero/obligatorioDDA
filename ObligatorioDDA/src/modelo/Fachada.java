@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Fachada {
 
     private SistemaAcceso sAcceso = new SistemaAcceso();
@@ -34,6 +36,35 @@ public class Fachada {
     public boolean hayCuposDisponibles(){
         return sLlamada.hayCuposDisponibles();
     }
+
+    public Llamada iniciarLlamada() {
+        return sLlamada.iniciarLlamada();
+    }
+    
+    public void agregarCliente(Cliente cliente){
+        sLlamada.agregarCliente(cliente);
+    }
+
+    public Cliente buscarCedula(String cadena) {
+        return sLlamada.buscarCedula(cadena);
+    }
+    
+    public ArrayList<Sector> getListaSectores(){
+        return sLlamada.getListaSectores();
+    }
+
+    public Sector pedirSector(String num) {
+        return sLlamada.pedirSector(num);
+    }
+
+    public boolean sectorDisponible(Sector sector) {
+       return sLlamada.sectorDisponible(sector);
+    }
+
+    public boolean asignarLlamada(Sector sector, Llamada llamada) {
+        return sLlamada.asignarLlamada(sector, llamada);
+    }
+    
     
     
 

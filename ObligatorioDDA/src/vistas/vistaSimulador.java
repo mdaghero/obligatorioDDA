@@ -20,6 +20,7 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
         
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +67,11 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
         lblMensaje.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 
         btn1.setText("1");
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
 
         btn2.setText("2");
         btn2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +169,7 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
                         .addGap(18, 18, 18)
                         .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(274, Short.MAX_VALUE)
+                        .addContainerGap(395, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,52 +248,56 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("2");
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("3");
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("5");
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("6");
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("4");
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("7");
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("8");
     }//GEN-LAST:event_btn8ActionPerformed
 
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("9");
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btnAsteriscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsteriscActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("*");
     }//GEN-LAST:event_btnAsteriscActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("0");
     }//GEN-LAST:event_btn0ActionPerformed
 
     private void btnHashtagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHashtagActionPerformed
-        // TODO add your handling code here:
+        controlador.ingresarTecla("#");
     }//GEN-LAST:event_btnHashtagActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        controlador.ingresarTecla("1");
+    }//GEN-LAST:event_btn1ActionPerformed
 
 
 
