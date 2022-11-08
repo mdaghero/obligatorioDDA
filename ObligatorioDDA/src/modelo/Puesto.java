@@ -49,10 +49,19 @@ public class Puesto {
         for(Llamada ll: llamadasAtendidas){
             acum += ll.getDuracion();
         }
-        return acum / llamadasAtendidas.size();
+        if(!llamadasAtendidas.isEmpty()) return acum / llamadasAtendidas.size();
+        return 0;
     }
 
-
+    public double calcularPromedioDeEspera(){
+        double acum = 0;
+        for(Llamada ll: llamadasAtendidas){
+            acum += ll.getTiempoEspera();
+        }
+        if(!llamadasAtendidas.isEmpty()) return acum / llamadasAtendidas.size();
+        return 0;
+    }
+    
     
     
 }

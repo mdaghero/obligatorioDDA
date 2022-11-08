@@ -82,27 +82,41 @@ public class Sector {
         return cant + llamadasEnEspera.size();
     }
 
-    public boolean sectorDisponible() {
+    public void sectorDisponible() throws LlamadasException{
+        boolean bandera = false;
         for(Puesto p: puestos){
             if(p.getTrabajador() != null){
-                return true;
+                bandera = true;
             }
         }
-        return false;
+        if(!bandera) throw new LlamadasException("Sector no disponible");
     }
 
-    public boolean asignarLlamada(Llamada llamada) {
+    public Puesto asignarLlamada(Llamada llamada) {
         for(Puesto p: puestos){
-            if(p.getTrabajador() != null && p.getLlamadaEnCurso() != null){
+            if(p.getTrabajador() != null && p.getLlamadaEnCurso() == null){
                 p.setLlamadaEnCurso(llamada);
-                return true;
+                return p;
             }
         }
         this.llamadasEnEspera.add(llamada);
-        return false;
+        return null;
     }
     
     
+    private double promedioPuestos(){
+        double acum = 0;
+        for(Puesto p: puestos){
+            acum += p.calcularPromedioDeEspera();
+        }      
+        if(!puestos.isEmpty()) return acum / puestos.size();
+        return 0;
+    }
+    
+    
+    public double esperaEstimada(){
+        return (promedioPuestos() * this.getLlamadasEnEspera().size());       
+    }
     
     
     

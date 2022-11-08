@@ -53,15 +53,15 @@ public class Fachada {
         return sLlamada.getListaSectores();
     }
 
-    public Sector pedirSector(String num) {
+    public Sector pedirSector(String num) throws LlamadasException{
         return sLlamada.pedirSector(num);
     }
 
-    public boolean sectorDisponible(Sector sector) {
-       return sLlamada.sectorDisponible(sector);
+    public void sectorDisponible(Sector sector) throws LlamadasException {
+        sLlamada.sectorDisponible(sector);
     }
 
-    public boolean asignarLlamada(Sector sector, Llamada llamada) {
+    public Puesto asignarLlamada(Sector sector, Llamada llamada) {
         return sLlamada.asignarLlamada(sector, llamada);
     }
     
