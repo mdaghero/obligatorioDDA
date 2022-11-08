@@ -51,20 +51,22 @@ public class SistemaLlamada {
         return sectores;
     }
 
-    public Sector pedirSector(String num) {
+    public Sector pedirSector(String num) throws LlamadasException {
         for(Sector s: sectores){
             if(s.getNumero() == Integer.parseInt(num)){
                 return s;
             }
         }
-        return null;
+        throw new LlamadasException("Sector no válido");
     }
 
-    public boolean sectorDisponible(Sector sector) {
-        return sector.sectorDisponible();
+    public void sectorDisponible(Sector sector) throws LlamadasException {
+        sector.sectorDisponible();
     }
 
-    boolean asignarLlamada(Sector sector, Llamada llamada) {
+    
+    public Puesto asignarLlamada(Sector sector, Llamada llamada) {
+        llamadasPendientes.remove(llamada);
         return sector.asignarLlamada(llamada);
     }
     

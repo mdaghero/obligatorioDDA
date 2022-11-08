@@ -3,23 +3,25 @@ package controladores;
 import java.util.ArrayList;
 import modelo.Fachada;
 import modelo.Llamada;
+import modelo.LlamadasException;
+import modelo.Puesto;
 import modelo.Sector;
 
 public class ControladorSimulador {
-
+    
     private iVistaSimulador vista;
-
-    String cadena = "";
-
-    Llamada llamada = null;
-
-    Sector sector = null;
-
+    
+    private String cadena = "";
+    
+    private Llamada llamada = null;
+    
+    private Sector sector = null;
+    
     public ControladorSimulador(iVistaSimulador vista) {
         this.vista = vista;
     }
-
-    public void iniciarLlamada() {
+    
+    public void iniciarLlamada(){
         if (Fachada.getInstancia().hayCuposDisponibles()) {
             llamada = Fachada.getInstancia().iniciarLlamada();
             vista.Mensaje("Ingrese su cédula seguido de la tecla numeral");
@@ -27,9 +29,9 @@ public class ControladorSimulador {
             vista.Mensaje("Comuníquese más tarde...");
         }
     }
-
+    
     public void ingresarTecla(String string) {
-
+        
         if (llamada != null) {
             if (llamada.getCliente() == null) {
                 if (string.equals("#")) {
@@ -41,9 +43,9 @@ public class ControladorSimulador {
                 pedirSector(string);
             }
         }
-
+        
     }
-
+    
     public void enviarDatos() {
         llamada.setCliente(Fachada.getInstancia().buscarCedula(cadena)); //buscarClientePorCedula()
         if (llamada.getCliente() != null) {
@@ -57,26 +59,25 @@ public class ControladorSimulador {
             vista.Mensaje("Cliente no registrado");
         }
     }
-
+    
     public void pedirSector(String num) {
-        sector = Fachada.getInstancia().pedirSector(num);
-        if (sector != null) {
-            if (Fachada.getInstancia().sectorDisponible(sector)) {
-                if (Fachada.getInstancia().asignarLlamada(sector, llamada)) {
-
-                } else {
-                    vista.Mensaje("Aguarde en línea, Ud. se encuentra a " + " "  + " llamadas de ser\n" 
-                            + "atendido, la espera estimada es de N minutos” Siendo X la cantidad de llamadas en\n"
-                            + "espera para ese sector y N los minutos estimados de espera para el sector");
-                }
-
+        
+        try {
+            sector = Fachada.getInstancia().pedirSector(num);
+            Fachada.getInstancia().sectorDisponible(sector);
+            Puesto puesto = Fachada.getInstancia().asignarLlamada(sector, llamada);
+            if (puesto != null) {
+                vista.Mensaje("Llamada en curso... Ud. se está comunicando con el sector " + sector.getNombre() + ". \n"
+                        + " Y está siendo atendido por: \n"
+                        + puesto.getTrabajador().getNombre() + ". Su llamada se ha iniciado en: " + llamada.getFechaInicio());
             } else {
-                vista.Mensaje("Sector no disponible");
+                vista.Mensaje("Aguarde en línea... Ud. se encuentra a " + sector.getLlamadasEnEspera().size() + " llamadas de ser \n"
+                        + "atendido, la espera estimada es de " + sector.esperaEstimada() + " minutos.");
             }
-        } else {
-            vista.Mensaje("Sector no válido");
+        } catch (LlamadasException ex) {
+            vista.Mensaje(ex.getMessage());
         }
-
+        
     }
-
+    
 }

@@ -24,15 +24,15 @@ public class Precarga {
         logica.agregarSector(sector3);
         logica.agregarSector(sector4);
         
-        logica.agregarTrabajador(new Trabajador("11111111", "1", sector1, "Juan Perez"));
-        logica.agregarTrabajador(new Trabajador("22222222", "2", sector3, "Martin Gomez"));
-        logica.agregarTrabajador(new Trabajador("33333333", "3", sector2, "Laura Rodriguez"));
-        logica.agregarTrabajador(new Trabajador("44444444", "4", sector4, "Ana Gonzalez"));
-        logica.agregarTrabajador(new Trabajador("55555555", "5", sector1, "Felipe Garcia"));
+        logica.agregarTrabajador(new Trabajador("1", "1", sector1, "Juan Perez"));
+        logica.agregarTrabajador(new Trabajador("2", "2", sector3, "Martin Gomez"));
+        logica.agregarTrabajador(new Trabajador("3", "3", sector2, "Laura Rodriguez"));
+        logica.agregarTrabajador(new Trabajador("4", "4", sector4, "Ana Gonzalez"));
+        logica.agregarTrabajador(new Trabajador("5", "5", sector1, "Felipe Garcia"));
 
-        logica.agregarCliente(new Cliente(new ConCosto(), "77777777", "Lucia Perez", 2300));
-        logica.agregarCliente(new Cliente(new Exonerados(), "88888888", "Matias Rodriguez", 500));
-        logica.agregarCliente(new Cliente(new Gestores(), "77777777", "Elena Silvera", 1230));
+        logica.agregarCliente(new Cliente(new ConCosto(), "7", "Lucia Perez", 2300));
+        logica.agregarCliente(new Cliente(new Exonerados(), "8", "Matias Rodriguez", 500));
+        logica.agregarCliente(new Cliente(new Gestores(), "9", "Elena Silvera", 1230));
         
     }
 
