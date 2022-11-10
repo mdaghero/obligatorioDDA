@@ -61,6 +61,11 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
 
         btnFinalizar.setForeground(new java.awt.Color(204, 0, 0));
         btnFinalizar.setText("Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("<html> Mensaje de <br> la central <br> telefónica: </html>");
 
@@ -245,6 +250,7 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
        controlador.iniciarLlamada();
+       btnIniciar.setEnabled(false);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -292,12 +298,18 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
     }//GEN-LAST:event_btnHashtagActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        controlador.finalizarLlamada();
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
         controlador.ingresarTecla("1");
     }//GEN-LAST:event_btn1ActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        controlador.finalizarLlamada();
+        dispose();
+    }//GEN-LAST:event_btnFinalizarActionPerformed
 
 
 

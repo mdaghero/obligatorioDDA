@@ -69,9 +69,9 @@ public class SistemaLlamada {
         llamadasPendientes.remove(llamada);
         return sector.asignarLlamada(llamada);
     }
-    
-    
-    
-    
+
+    void finalizarLlamada(Llamada llamada) {
+        
+    }
     
 }

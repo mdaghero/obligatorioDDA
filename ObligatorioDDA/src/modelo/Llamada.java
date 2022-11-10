@@ -26,14 +26,8 @@ public class Llamada {
         return ((fechaInicio.getTime() - fechaIngreso.getTime()) / 1000);
     }
 
-//    public Llamada(Cliente cliente, Trabajador trabajador){
-//        this.cliente = cliente;
-//        this.trabajador = trabajador;
-//        this.fechaInicio = new Date();
-//        this.costo = new Costo();
-//    }
     public Llamada() {
-        this.fechaInicio = new Date();
+        this.fechaIngreso = new Date();
         this.costo = new Costo();
     }
 
