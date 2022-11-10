@@ -1,8 +1,9 @@
 package modelo;
 
 import java.util.ArrayList;
+import observador.Observable;
 
-public class Puesto {
+public class Puesto extends Observable {
 
     private Integer numero;
 
@@ -16,6 +17,8 @@ public class Puesto {
         this.numero = numero;
     }
 
+    public enum eventos { llamadaIniciada, llamadaFinalizada };
+    
     public Integer getNumero() {
         return numero;
     }
@@ -33,6 +36,7 @@ public class Puesto {
     }
 
     public void setLlamadaEnCurso(Llamada llamadaEnCurso) {
+        avisar(eventos.llamadaIniciada);
         this.llamadaEnCurso = llamadaEnCurso;
     }
 

@@ -1,4 +1,3 @@
-
 package vistas;
 
 import controladores.ControladorLlamadas;
@@ -7,30 +6,22 @@ import modelo.Puesto;
 import modelo.Sector;
 import modelo.Trabajador;
 
-
-public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaAtenderLlamadas{
+public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaAtenderLlamadas {
 
     private ControladorLlamadas controlador;
-    
-    private Trabajador trabajador;
-    
-    private Sector sector;
-    
-    private Puesto puesto;
-    
- 
+
     public vistaAtenderLlamadas(java.awt.Frame parent, boolean modal, Trabajador trabajador) {
         super(parent, modal);
         initComponents();
-        this.trabajador = trabajador;
-        this.sector = trabajador.getSector();
-        this.puesto = sector.getPuestoPorTrabajador(trabajador);
-        lblTrabajador.setText(trabajador.getNombre());
-        lblSectorYPuesto.setText("Sector: " + sector.getNombre() + " | Puesto Nro. #" + puesto.getNumero());
-        lblLlamadasNumero.setText("0");
-        lblTiempoProm.setText("0");
         setLocationRelativeTo(parent);
         controlador = new ControladorLlamadas(trabajador, this);
+    }
+
+    public void mostrarDatos(Trabajador traba, Sector sec, Puesto puesto) {
+        lblTrabajador.setText(traba.getNombre());
+        lblSectorYPuesto.setText("Sector: " + sec.getNombre() + " | Puesto Nro. #" + puesto.getNumero());
+        lblLlamadasNumero.setText("0");
+        lblTiempoProm.setText("0");
     }
 
     /**
@@ -48,7 +39,7 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
         lblLlamadasNumero = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblTiempoProm = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblMensaje = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -75,9 +66,9 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
         lblTiempoProm.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTiempoProm.setText("67");
 
-        jLabel2.setForeground(new java.awt.Color(51, 102, 0));
-        jLabel2.setText("   Llamada en curso...");
-        jLabel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
+        lblMensaje.setForeground(new java.awt.Color(51, 102, 0));
+        lblMensaje.setText("  ");
+        lblMensaje.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Cliente:");
@@ -114,7 +105,7 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(36, 36, 36)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblTrabajador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,7 +140,7 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
                     .addComponent(lblTiempoProm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblLlamadasAtendidas))
                 .addGap(48, 48, 48)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,16 +164,22 @@ public class vistaAtenderLlamadas extends javax.swing.JDialog implements iVistaA
     private javax.swing.JButton btnFinalizar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLlamadasAtendidas;
     private javax.swing.JLabel lblLlamadasNumero;
+    private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblSectorYPuesto;
     private javax.swing.JLabel lblTiempoProm;
     private javax.swing.JLabel lblTrabajador;
     private javax.swing.JTextArea txtAreaDescripcion;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void Mensaje(String msje) {
+        lblMensaje.setText(msje);
+
+    }
 }

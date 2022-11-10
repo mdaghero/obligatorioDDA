@@ -6,8 +6,10 @@ import modelo.Llamada;
 import modelo.LlamadasException;
 import modelo.Puesto;
 import modelo.Sector;
+import observador.Observable;
+import observador.Observador;
 
-public class ControladorSimulador {
+public class ControladorSimulador implements Observador {
     
     private iVistaSimulador vista;
     
@@ -43,7 +45,6 @@ public class ControladorSimulador {
                 pedirSector(string);
             }
         }
-        
     }
     
     public void enviarDatos() {
@@ -78,6 +79,19 @@ public class ControladorSimulador {
             vista.Mensaje(ex.getMessage());
         }
         
+    }
+
+    public void finalizarLlamada() {
+        if(llamada != null){
+            Fachada.getInstancia().finalizarLlamada(llamada);
+        }
+        
+        
+    }
+
+    @Override
+    public void actualizar(Object evento, Observable origen) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

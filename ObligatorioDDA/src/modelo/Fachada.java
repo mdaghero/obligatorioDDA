@@ -64,6 +64,10 @@ public class Fachada {
     public Puesto asignarLlamada(Sector sector, Llamada llamada) {
         return sLlamada.asignarLlamada(sector, llamada);
     }
+
+    public void finalizarLlamada(Llamada llamada) {
+        sLlamada.finalizarLlamada(llamada);
+    }
     
     
     
