@@ -10,9 +10,9 @@ public class Cliente {
     
     private String nombre;
     
-    private Integer saldo;
+    private double saldo;
 
-    public Cliente(TipoCliente tipoCliente, String ci, String nombre, Integer saldo) {
+    public Cliente(TipoCliente tipoCliente, String ci, String nombre, double saldo) {
         this.tipoCliente = tipoCliente;
         this.ci = ci;
         this.nombre = nombre;
@@ -31,7 +31,7 @@ public class Cliente {
         return nombre;
     }
 
-    public Integer getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
@@ -39,7 +39,7 @@ public class Cliente {
         this.tipoCliente = tipoCliente;
     }
 
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
     

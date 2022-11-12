@@ -11,5 +11,9 @@ public interface iVistaAtenderLlamadas {
     
     public void Mensaje(String msje);
     
+    public void MensajeNombreCliente(String mensaje);
+
+    public void ToggleBotonFinalizar(Boolean habilitado);
+
     
 }

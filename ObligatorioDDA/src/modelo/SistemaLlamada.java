@@ -63,15 +63,16 @@ public class SistemaLlamada {
     public void sectorDisponible(Sector sector) throws LlamadasException {
         sector.sectorDisponible();
     }
-
     
     public Puesto asignarLlamada(Sector sector, Llamada llamada) {
         llamadasPendientes.remove(llamada);
         return sector.asignarLlamada(llamada);
     }
 
-    void finalizarLlamada(Llamada llamada) {
-        
+    void finalizarLlamada(Llamada llamada, Sector sector, Puesto puesto) {
+        llamada.finalizarLlamada();
+        puesto.finalizarLlamada();
+        sector.finalizarLlamada(llamada);
     }
     
 }

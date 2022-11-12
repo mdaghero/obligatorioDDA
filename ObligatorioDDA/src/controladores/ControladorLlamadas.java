@@ -1,5 +1,6 @@
 package controladores;
 
+import modelo.Fachada;
 import modelo.Puesto;
 import modelo.Sector;
 import modelo.Trabajador;
@@ -24,17 +25,31 @@ public class ControladorLlamadas implements Observador {
         this.puesto.agregarObservador(this);
         vista.mostrarDatos(trabajador, sector, puesto);
     }
-    
-    
+   
 
     @Override
     public void actualizar(Object evento, Observable origen) {
         if(evento.equals(Puesto.eventos.llamadaIniciada)){
             vista.Mensaje("Llamada en curso...");
+            vista.MensajeNombreCliente(puesto.getLlamadaEnCurso().getCliente().getNombre());
+            vista.ToggleBotonFinalizar(true);
         }else if(evento.equals(Puesto.eventos.llamadaFinalizada)){
-            vista.Mensaje("Llamada finalizada.");
+            vista.Mensaje("Llamada finalizada. Duración: " + puesto.getLlamadasAtendidas().get(puesto.getLlamadasAtendidas().size() -1).getDuracion()
+                    + " segundos. Costo: $" + puesto.getLlamadasAtendidas().get(puesto.getLlamadasAtendidas().size() -1).getCosto());
+            vista.MensajeNombreCliente("");
+            vista.ToggleBotonFinalizar(false);
+            vista.mostrarDatos(trabajador, sector, puesto);
         }
         
     }
+
+    public void finalizarLlamada(String descripcion) {
+        if (puesto.getLlamadaEnCurso() != null) {
+            puesto.getLlamadaEnCurso().setDescripcion(descripcion);
+            Fachada.getInstancia().finalizarLlamada(puesto.getLlamadaEnCurso(), sector, puesto);
+        }
+    }
+    
+
 
 }

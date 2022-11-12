@@ -1,15 +1,12 @@
-
 package vistas;
 
 import controladores.ControladorSimulador;
 import controladores.iVistaSimulador;
-import javax.swing.JOptionPane;
 
+public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulador {
 
-public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulador{
-
-    
     private ControladorSimulador controlador;
+
     /**
      * Creates new form vistaSimulador
      */
@@ -17,10 +14,9 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
         super(parent, modal);
         initComponents();
         this.controlador = new ControladorSimulador(this);
-        
+
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -249,8 +245,8 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-       controlador.iniciarLlamada();
-       btnIniciar.setEnabled(false);
+        controlador.iniciarLlamada();
+        btnIniciar.setEnabled(false);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
@@ -308,9 +304,7 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         controlador.finalizarLlamada();
-        dispose();
     }//GEN-LAST:event_btnFinalizarActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -337,4 +331,10 @@ public class vistaSimulador extends javax.swing.JDialog implements iVistaSimulad
     public void Mensaje(String msje) {
         lblMensaje.setText(msje);
     }
+
+    @Override
+    public void ToggleBotonFinalizar(Boolean habilitado) {
+        btnFinalizar.setEnabled(habilitado);
+    }
+
 }

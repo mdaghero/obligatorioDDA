@@ -11,11 +11,6 @@ public class Costo {
     public double getCosto() {
         return costo;
     }
-
-    public void setCosto(double costo) {
-        this.costo = costo;
-    }
-    
     
     public double calcularCosto(long duracion, long tiempoEspera, TipoCliente tc){
         double tasa = tc.obtenerTarifa(duracion, tiempoEspera);
@@ -25,7 +20,7 @@ public class Costo {
         if(costoFinal < 0){
             costoFinal = 0;
         }
-        
+        this.costo = costoFinal;
         return costoFinal;
     }
     
