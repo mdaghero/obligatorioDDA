@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/controladores/iVistaSimulador.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/vistas/vistaAtenderLlamadas.java</file>
+            <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/observador/Observable.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/vistas/vistaHome.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/controladores/ControladorLlamadas.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/modelo/Costo.java</file>
@@ -14,6 +15,7 @@
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/modelo/Cliente.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/modelo/Exonerados.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/modelo/TipoCliente.java</file>
+            <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/observador/Observador.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/controladores/ControladorLogin.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/modelo/SistemaAcceso.java</file>
             <file>file:/C:/Users/Marcelo/Documents/ATI/Semestre%204/Diseño%20de%20Aplicaciones/Obligatorio/Solucion/obligatorioDDA/ObligatorioDDA/src/controladores/iVistaLogin.java</file>

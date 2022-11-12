@@ -1,8 +1,9 @@
 package modelo;
 
 import java.util.Date;
+import observador.Observable;
 
-public class Llamada {
+public class Llamada extends Observable{
 
     private Costo costo;
 
@@ -17,6 +18,8 @@ public class Llamada {
     private Date fechaIngreso;
 
     private String descripcion;
+    
+    public enum eventos { puestoLibre, llamadaFinalizada }
 
     public long getDuracion() {
         return ((fechaFin.getTime() - fechaInicio.getTime()) / 1000);
@@ -31,12 +34,24 @@ public class Llamada {
         this.costo = new Costo();
     }
 
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
 
+    public double getCosto() {
+        return costo.getCosto();
+    }
+
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
     }
 
     public Date getFechaInicio() {
@@ -45,11 +60,19 @@ public class Llamada {
 
     public void finalizarLlamada() {
         this.fechaFin = new Date();
-        costo.calcularCosto(getDuracion(), getTiempoEspera(), cliente.getTipoCliente());
+        double costoCliente = costo.calcularCosto(getDuracion(), getTiempoEspera(), cliente.getTipoCliente());
+        this.cliente.setSaldo(cliente.getSaldo() - costoCliente);
+        avisar(eventos.llamadaFinalizada);
     }
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    public void puestoLibre(){
+        avisar(eventos.puestoLibre);
+    }
+    
+    
+    
 }

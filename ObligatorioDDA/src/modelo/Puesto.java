@@ -36,8 +36,8 @@ public class Puesto extends Observable {
     }
 
     public void setLlamadaEnCurso(Llamada llamadaEnCurso) {
-        avisar(eventos.llamadaIniciada);
         this.llamadaEnCurso = llamadaEnCurso;
+        avisar(eventos.llamadaIniciada);
     }
 
     public ArrayList<Llamada> getLlamadasAtendidas() {
@@ -53,7 +53,7 @@ public class Puesto extends Observable {
         for(Llamada ll: llamadasAtendidas){
             acum += ll.getDuracion();
         }
-        if(!llamadasAtendidas.isEmpty()) return acum / llamadasAtendidas.size();
+        if(!llamadasAtendidas.isEmpty()) return Math.round(acum / llamadasAtendidas.size());
         return 0;
     }
 
@@ -62,8 +62,14 @@ public class Puesto extends Observable {
         for(Llamada ll: llamadasAtendidas){
             acum += ll.getTiempoEspera();
         }
-        if(!llamadasAtendidas.isEmpty()) return acum / llamadasAtendidas.size();
+        if(!llamadasAtendidas.isEmpty()) return Math.round(acum / llamadasAtendidas.size());
         return 0;
+    }
+    
+    void finalizarLlamada() {
+        this.llamadasAtendidas.add(this.llamadaEnCurso);
+        this.llamadaEnCurso = null;
+        avisar(eventos.llamadaFinalizada);
     }
     
     

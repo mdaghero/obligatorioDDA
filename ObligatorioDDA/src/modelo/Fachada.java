@@ -65,8 +65,8 @@ public class Fachada {
         return sLlamada.asignarLlamada(sector, llamada);
     }
 
-    public void finalizarLlamada(Llamada llamada) {
-        sLlamada.finalizarLlamada(llamada);
+    public void finalizarLlamada(Llamada llamada, Sector sector, Puesto puesto) {
+        sLlamada.finalizarLlamada(llamada, sector, puesto);
     }
     
     
