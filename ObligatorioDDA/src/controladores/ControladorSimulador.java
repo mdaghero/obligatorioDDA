@@ -76,8 +76,12 @@ public class ControladorSimulador implements Observador {
 
     public void finalizarLlamada() {
         if (llamada != null) {
+            vista.ToggleBotonFinalizar(false);
+            vista.Mensaje("Llamada finalizada.");
             Fachada.getInstancia().finalizarLlamada(llamada, sector, puesto);
+            limpiarCampos();
         }
+           
     }
     
     private void pedirPuesto() {
@@ -94,7 +98,6 @@ public class ControladorSimulador implements Observador {
 
     @Override
     public void actualizar(Object evento, Observable origen) {
-
         if (evento.equals(Llamada.eventos.puestoLibre)) {
             pedirPuesto();
         }
@@ -104,7 +107,13 @@ public class ControladorSimulador implements Observador {
             vista.ToggleBotonFinalizar(false);
             llamada = null;
         }
-
+    }
+    
+    public void limpiarCampos(){
+        this.llamada = null;
+        this.puesto = null;
+        this.cadena = "";
+        this.sector = null;
     }
 
 }

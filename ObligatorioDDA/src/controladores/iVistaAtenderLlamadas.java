@@ -15,5 +15,6 @@ public interface iVistaAtenderLlamadas {
 
     public void ToggleBotonFinalizar(Boolean habilitado);
 
+    public void Salir();
     
 }

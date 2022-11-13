@@ -8,6 +8,8 @@ public class Llamada extends Observable{
     private Costo costo;
 
     private Trabajador trabajador;
+    
+    private Integer numero;
 
     private Cliente cliente;
 
@@ -42,6 +44,10 @@ public class Llamada extends Observable{
         return cliente;
     }
 
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
     public double getCosto() {
         return costo.getCosto();
     }
@@ -71,6 +77,14 @@ public class Llamada extends Observable{
 
     public void puestoLibre(){
         avisar(eventos.puestoLibre);
+    }
+
+    public Integer getNumero() {
+        return numero;
+    }
+
+    public void setNumero(Integer numero) {
+        this.numero = numero;
     }
     
     
