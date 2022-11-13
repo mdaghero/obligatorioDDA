@@ -64,7 +64,7 @@ public class ControladorLlamadas implements Observador {
                 vista.Salir();
             } 
         }
-
+        puesto.quitarObservador(this);
     }
 
 }

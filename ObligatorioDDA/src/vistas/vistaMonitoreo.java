@@ -2,6 +2,7 @@ package vistas;
 
 import controladores.ControladorMonitoreo;
 import controladores.iVistaMonitoreo;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import modelo.Fachada;
@@ -11,6 +12,8 @@ import modelo.Sector;
 
 public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitoreo {
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    
     private ControladorMonitoreo controlador;
 
     public vistaMonitoreo(java.awt.Frame parent, boolean modal) {
@@ -36,6 +39,7 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Monitoreo");
+        setBackground(new java.awt.Color(204, 204, 255));
 
         slcSector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,17 +51,22 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
         lblSectores.setText("Sectores ");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         tblListaSectores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "# Llamada", "Estado", "Inicio", "Fin", "# Puesto", "Trabajador", "Duracion", "Costo", "Cliente", "Saldo"
+                "Sector", "# Llamada", "Estado", "Inicio", "Fin", "# Puesto", "Trabajador", "Duracion", "Costo", "Cliente", "Saldo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -75,9 +84,9 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(slcSector, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,37 +107,14 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
 
     private void slcSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slcSectorActionPerformed
 
-        ArrayList<String> data = new ArrayList<>();
-        DefaultTableModel model = (DefaultTableModel) tblListaSectores.getModel();
-        if (slcSector.getSelectedItem().toString().equals("Todos")) {
-            for (Sector s : Fachada.getInstancia().getListaSectores()) {
-                for (Puesto p : s.getPuestos()) {
-                    if (p.getLlamadaEnCurso() != null) {
-                        model.addRow(new Object[]{p.getLlamadaEnCurso().getNumero(), "En curso", p.getLlamadaEnCurso().getFechaInicio(), "----",
-                             p.getNumero(), p.getTrabajador().getNombre(), "----", "----", p.getLlamadaEnCurso().getCliente(),
-                            p.getLlamadaEnCurso().getCliente().getSaldo()});
-                    }
-                    for (Llamada ll : p.getLlamadasAtendidas()) {
-                        model.addRow(new Object[]{ll.getNumero(), "Finalizada", ll.getFechaInicio(), ll.getFechaFin(), p.getNumero(),
-                             p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente(), ll.getCliente().getSaldo()});
-                    }
-                }
-            }
-        } else {
-            Sector opcionSector = (Sector) slcSector.getSelectedItem();
-            for (Puesto p : opcionSector.getPuestos()) {
-                if (p.getLlamadaEnCurso() != null) {
-                    model.addRow(new Object[]{p.getLlamadaEnCurso().getNumero(), "En curso", p.getLlamadaEnCurso().getFechaInicio(), "----",
-                         p.getNumero(), p.getTrabajador().getNombre(), "----", "----", p.getLlamadaEnCurso().getCliente(),
-                        p.getLlamadaEnCurso().getCliente().getSaldo()});
-                }
-                for (Llamada ll : p.getLlamadasAtendidas()) {
-                    model.addRow(new Object[]{ll.getNumero(), "Finalizada", ll.getFechaInicio(), ll.getFechaFin(), p.getNumero(),
-                         p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente(), ll.getCliente().getSaldo()});
-                }
-            }
-        }
+        mostrarTabla();
+        
     }//GEN-LAST:event_slcSectorActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        controlador.salir();
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     @Override
     public void cargarListaSectores(ArrayList<Sector> sectores) {
@@ -138,6 +124,42 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
         }
     }
 
+    public void mostrarTabla() {
+        DefaultTableModel model = (DefaultTableModel) tblListaSectores.getModel();
+        model.setNumRows(0);
+        if (slcSector.getSelectedItem().toString().equals("Todos")) {
+
+            ArrayList<Sector> sectores = Fachada.getInstancia().getListaSectores();
+            for (Sector s : sectores) {
+                for (Puesto p : s.getPuestos()) {
+                    if (p.getLlamadaEnCurso() != null) {
+                        model.addRow(new Object[]{s.getNombre(), p.getLlamadaEnCurso().getNumero(), "En curso", sdf.format(p.getLlamadaEnCurso().getFechaInicio()), "----",
+                            p.getNumero(), p.getTrabajador().getNombre(), "----", "----", p.getLlamadaEnCurso().getCliente().getNombre(),
+                            p.getLlamadaEnCurso().getCliente().getSaldo()});
+                    }
+                    for (Llamada ll : p.getLlamadasAtendidas()) {
+                        model.addRow(new Object[]{s.getNombre(), ll.getNumero(), "Finalizada", sdf.format(ll.getFechaInicio()), sdf.format(ll.getFechaFin()), p.getNumero(),
+                            p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
+                    }
+                }
+            }
+        } else {
+            Sector opcionSector = (Sector) slcSector.getSelectedItem();
+            for (Puesto p : opcionSector.getPuestos()) {
+                if (p.getLlamadaEnCurso() != null) {
+                    model.addRow(new Object[]{"----", p.getLlamadaEnCurso().getNumero(), "En curso", sdf.format(p.getLlamadaEnCurso().getFechaInicio()), "----",
+                        p.getNumero(), p.getTrabajador().getNombre(), "----", "----", p.getLlamadaEnCurso().getCliente().getNombre(),
+                        p.getLlamadaEnCurso().getCliente().getSaldo()});
+                }
+                for (Llamada ll : p.getLlamadasAtendidas()) {
+                    model.addRow(new Object[]{"----", ll.getNumero(), "Finalizada", sdf.format(ll.getFechaInicio()), sdf.format(ll.getFechaFin()), p.getNumero(),
+                        p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
+                }
+            }
+        }
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;

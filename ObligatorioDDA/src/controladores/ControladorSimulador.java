@@ -1,5 +1,6 @@
 package controladores;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import modelo.Fachada;
 import modelo.Llamada;
@@ -11,6 +12,8 @@ import observador.Observador;
 
 public class ControladorSimulador implements Observador {
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
+    
     private iVistaSimulador vista;
 
     private String cadena = "";
@@ -54,10 +57,11 @@ public class ControladorSimulador implements Observador {
         llamada.setCliente(Fachada.getInstancia().buscarCedula(cadena)); //buscarClientePorCedula()
         if (llamada.getCliente() != null) {
             ArrayList<Sector> sectores = Fachada.getInstancia().getListaSectores();
-            String mensaje = "Para comunicarse con ";
+            String mensaje = "<html>Para comunicarse con ";
             for (Sector s : sectores) {
-                mensaje += s.getNombre() + " digite " + s.getNumero() + ", ";
+                mensaje += s.getNombre() + " digite " + s.getNumero() + "<br>  ";
             }
+            mensaje+= "<html>";
             vista.Mensaje(mensaje);
         } else {
             vista.Mensaje("Cliente no registrado");
@@ -81,7 +85,6 @@ public class ControladorSimulador implements Observador {
             Fachada.getInstancia().finalizarLlamada(llamada, sector, puesto);
             limpiarCampos();
         }
-           
     }
     
     private void pedirPuesto() {
@@ -89,7 +92,7 @@ public class ControladorSimulador implements Observador {
         if (puesto != null) {
             vista.Mensaje("<html>Llamada en curso... <br> Ud. se está comunicando con el sector " + sector.getNombre() + ". <br>"
                     + " Y está siendo atendido por: " + puesto.getTrabajador().getNombre() + ". <br> Su llamada se ha iniciado en: "
-                    + llamada.getFechaInicio() + "</html>");
+                    + sdf.format(llamada.getFechaInicio()) + "</html>");
         } else {
             vista.Mensaje("Aguarde en línea... Ud. se encuentra a " + sector.getLlamadasEnEspera().size() + " llamadas de ser \n"
                     + "atendido, la espera estimada es de " + sector.esperaEstimada() + " minutos.");
@@ -105,6 +108,7 @@ public class ControladorSimulador implements Observador {
             vista.Mensaje("<html>Llamada finalizada. <br> Duración: " + llamada.getDuracion() + " segundos. <br> Costo: $"
                     + llamada.getCosto() + ". <br> Su saldo es de: $" + llamada.getCliente().getSaldo());
             vista.ToggleBotonFinalizar(false);
+            llamada.quitarObservador(this);
             llamada = null;
         }
     }
