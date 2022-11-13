@@ -53,6 +53,11 @@ public class vistaHome extends javax.swing.JFrame {
         });
 
         bMonitoreo.setText("Aplicación Monitoreo");
+        bMonitoreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bMonitoreoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,7 +89,6 @@ public class vistaHome extends javax.swing.JFrame {
     private void bAppTrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAppTrabajadoresActionPerformed
         
         new vistaLogin(this,false, "Login").setVisible(true);
-       
         
     }//GEN-LAST:event_bAppTrabajadoresActionPerformed
 
@@ -98,6 +102,10 @@ public class vistaHome extends javax.swing.JFrame {
         dispose();
         
     }//GEN-LAST:event_formWindowClosing
+
+    private void bMonitoreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bMonitoreoActionPerformed
+        new vistaMonitoreo(this, false).setVisible(true);
+    }//GEN-LAST:event_bMonitoreoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

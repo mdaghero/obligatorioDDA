@@ -17,6 +17,10 @@ public class Puesto extends Observable {
         this.numero = numero;
     }
 
+    public void logout() {
+        this.trabajador = null;
+    }
+
     public enum eventos { llamadaIniciada, llamadaFinalizada };
     
     public Integer getNumero() {

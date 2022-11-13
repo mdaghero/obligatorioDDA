@@ -73,6 +73,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Aplicaci&#xf3;n Monitoreo"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bMonitoreoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

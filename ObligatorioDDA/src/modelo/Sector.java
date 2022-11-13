@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class Sector {
 
+    private static Integer numeroLlamada = 1;
+    
     private String nombre;
 
     private Integer numero;
@@ -67,7 +69,6 @@ public class Sector {
         }
         return false;
     }
-    
 
     public Puesto getPuestoPorTrabajador(Trabajador trabajador) {
         for (Puesto p : puestos) {
@@ -102,6 +103,7 @@ public class Sector {
     }
 
     public Puesto asignarLlamada(Llamada llamada) {
+        llamada.setNumero(numeroLlamada++);
         for (Puesto p : puestos) {
             if (p.getTrabajador() != null && p.getLlamadaEnCurso() == null) {
                 llamada.setFechaInicio(new Date());
@@ -131,10 +133,21 @@ public class Sector {
     }
 
     void finalizarLlamada(Llamada llamada) {
-        this.llamadasAtendidas.add(llamada);
-        if (this.llamadasEnEspera.size() > 0) {
-            llamadasEnEspera.get(0).puestoLibre();
+        if (llamada.getFechaInicio() == null) {
+            this.llamadasEnEspera.remove(llamada);
+        } else {
+            this.llamadasAtendidas.add(llamada);
+            if (!this.llamadasEnEspera.isEmpty()) {
+                llamadasEnEspera.get(0).puestoLibre();
+            }
         }
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
+    
+    
 }
