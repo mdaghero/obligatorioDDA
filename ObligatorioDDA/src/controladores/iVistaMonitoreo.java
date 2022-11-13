@@ -9,4 +9,6 @@ public interface iVistaMonitoreo {
     
     public void cargarListaSectores(ArrayList<Sector> sectores);
     
+    public void mostrarTabla();
+    
 }

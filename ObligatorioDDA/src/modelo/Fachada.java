@@ -1,14 +1,17 @@
 package modelo;
 
 import java.util.ArrayList;
+import observador.Observable;
 
-public class Fachada {
+public class Fachada extends Observable{
 
     private SistemaAcceso sAcceso = new SistemaAcceso();
 
     private SistemaLlamada sLlamada = new SistemaLlamada();
 
     private static Fachada instancia = new Fachada();
+    
+    public enum eventos { cambioEstado }
 
     public static Fachada getInstancia() {
         return instancia;
@@ -61,12 +64,16 @@ public class Fachada {
         sLlamada.sectorDisponible(sector);
     }
 
-    public Puesto asignarLlamada(Sector sector, Llamada llamada) {
-        return sLlamada.asignarLlamada(sector, llamada);
+    public Puesto asignarLlamada(Sector sector, Llamada llamada) {       
+        Puesto puesto = sLlamada.asignarLlamada(sector, llamada);
+        avisar(eventos.cambioEstado);
+        return puesto;
+        
     }
 
     public void finalizarLlamada(Llamada llamada, Sector sector, Puesto puesto) {
         sLlamada.finalizarLlamada(llamada, sector, puesto);
+        avisar(eventos.cambioEstado);
     }
     
     
