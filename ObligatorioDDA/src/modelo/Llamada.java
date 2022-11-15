@@ -25,6 +25,10 @@ public class Llamada extends Observable{
     
     public enum eventos { puestoLibre, llamadaFinalizada }
 
+    public Trabajador getTrabajador() {
+        return trabajador;
+    }
+    
     public long getDuracion() {
         return ((fechaFin.getTime() - fechaInicio.getTime()) / 1000);
     }

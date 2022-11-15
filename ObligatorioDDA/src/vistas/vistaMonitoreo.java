@@ -13,7 +13,7 @@ import modelo.Sector;
 public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitoreo {
 
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
-    
+
     private ControladorMonitoreo controlador;
 
     public vistaMonitoreo(java.awt.Frame parent, boolean modal) {
@@ -41,12 +41,14 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
         setTitle("Monitoreo");
         setBackground(new java.awt.Color(204, 204, 255));
 
+        slcSector.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         slcSector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 slcSectorActionPerformed(evt);
             }
         });
 
+        lblSectores.setFont(new java.awt.Font("JetBrains Mono", 0, 18)); // NOI18N
         lblSectores.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSectores.setText("Sectores ");
 
@@ -57,6 +59,7 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
             }
         });
 
+        tblListaSectores.setFont(new java.awt.Font("JetBrains Mono", 0, 12)); // NOI18N
         tblListaSectores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -74,6 +77,15 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
             }
         });
         jScrollPane2.setViewportView(tblListaSectores);
+        if (tblListaSectores.getColumnModel().getColumnCount() > 0) {
+            tblListaSectores.getColumnModel().getColumn(0).setPreferredWidth(55);
+            tblListaSectores.getColumnModel().getColumn(2).setPreferredWidth(60);
+            tblListaSectores.getColumnModel().getColumn(3).setPreferredWidth(120);
+            tblListaSectores.getColumnModel().getColumn(4).setPreferredWidth(120);
+            tblListaSectores.getColumnModel().getColumn(5).setPreferredWidth(55);
+            tblListaSectores.getColumnModel().getColumn(7).setPreferredWidth(50);
+            tblListaSectores.getColumnModel().getColumn(8).setPreferredWidth(45);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -82,24 +94,24 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(slcSector, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(slcSector, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(50, 50, 50)
                 .addComponent(lblSectores, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(slcSector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,7 +120,7 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
     private void slcSectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slcSectorActionPerformed
 
         mostrarTabla();
-        
+
     }//GEN-LAST:event_slcSectorActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -128,7 +140,6 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
         DefaultTableModel model = (DefaultTableModel) tblListaSectores.getModel();
         model.setNumRows(0);
         if (slcSector.getSelectedItem().toString().equals("Todos")) {
-
             ArrayList<Sector> sectores = Fachada.getInstancia().getListaSectores();
             for (Sector s : sectores) {
                 for (Puesto p : s.getPuestos()) {
@@ -139,7 +150,7 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
                     }
                     for (Llamada ll : p.getLlamadasAtendidas()) {
                         model.addRow(new Object[]{s.getNombre(), ll.getNumero(), "Finalizada", sdf.format(ll.getFechaInicio()), sdf.format(ll.getFechaFin()), p.getNumero(),
-                            p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
+                            ll.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
                     }
                 }
             }
@@ -153,13 +164,12 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
                 }
                 for (Llamada ll : p.getLlamadasAtendidas()) {
                     model.addRow(new Object[]{"----", ll.getNumero(), "Finalizada", sdf.format(ll.getFechaInicio()), sdf.format(ll.getFechaFin()), p.getNumero(),
-                        p.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
+                        ll.getTrabajador().getNombre(), ll.getDuracion(), ll.getCosto(), ll.getCliente().getNombre(), ll.getCliente().getSaldo()});
                 }
             }
         }
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
