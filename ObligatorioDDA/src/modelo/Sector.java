@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Sector {
-
-    private static Integer numeroLlamada = 1;
+    
+    private Integer numeroLlamadaSector = 1;
     
     private String nombre;
 
@@ -30,6 +30,11 @@ public class Sector {
         for (int i = 1; i <= cantidadPuestos; i++) {
             puestos.add(new Puesto(i));
         }
+    }
+
+
+    public void setNumeroLlamada(Integer numeroLlamadaSector) {
+        this.numeroLlamadaSector = numeroLlamadaSector;
     }
 
     public String getNombre() {
@@ -60,7 +65,7 @@ public class Sector {
         for (Puesto p : puestos) {
             if (p.getTrabajador() == null) {
                 p.setTrabajador(trabajador);
-                if (this.llamadasEnEspera.size() > 0) {
+                if (!this.llamadasEnEspera.isEmpty()) {
                     llamadasEnEspera.get(0).puestoLibre();
                 }
 
@@ -103,7 +108,8 @@ public class Sector {
     }
 
     public Puesto asignarLlamada(Llamada llamada) {
-        llamada.setNumero(numeroLlamada++);
+        
+        llamada.setNumero(numeroLlamadaSector++);
         for (Puesto p : puestos) {
             if (p.getTrabajador() != null && p.getLlamadaEnCurso() == null) {
                 llamada.setFechaInicio(new Date());
