@@ -69,6 +69,7 @@ public class SistemaLlamada {
         if (sector != null) {
             if (llamada.getFechaInicio() != null) {
                 llamada.finalizarLlamada();
+                llamada.getCliente().setSaldo(llamada.getCliente().getSaldo() - llamada.getCosto());
                 puesto.finalizarLlamada();
             }
             sector.finalizarLlamada(llamada);
