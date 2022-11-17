@@ -21,7 +21,7 @@ public class SistemaLlamada {
         for (Sector s : sectores) {
             acum += s.cantidadLlamadasEnCurso();
         }
-        return acum < cantidadMax;
+        return acum <= cantidadMax;
     }
 
     public Llamada iniciarLlamada() {

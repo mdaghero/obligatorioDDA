@@ -33,6 +33,11 @@ public class Precarga {
         logica.agregarCliente(new Cliente(new ConCosto(), "7", "Lucia Perez", 2300));
         logica.agregarCliente(new Cliente(new Exonerados(), "8", "Matias Rodriguez", 500));
         logica.agregarCliente(new Cliente(new Gestores(), "9", "Elena Silvera", 1230));
+         logica.agregarCliente(new Cliente(new Gestores(), "10", "Pedro Martinez", 120));
+         
+        logica.agregarCliente(new Cliente(new Gestores(), "11", "Jose Pereira", 200));
+        logica.agregarCliente(new Cliente(new Gestores(), "12", "Sofia Machin", 80));
+        logica.agregarCliente(new Cliente(new Gestores(), "13", "Laura Ferreira", 98));
         
     }
 

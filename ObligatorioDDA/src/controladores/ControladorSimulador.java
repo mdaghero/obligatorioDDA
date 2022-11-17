@@ -94,8 +94,8 @@ public class ControladorSimulador implements Observador {
                     + " Y está siendo atendido por: " + puesto.getTrabajador().getNombre() + ". <br> Su llamada se ha iniciado en: "
                     + sdf.format(llamada.getFechaInicio()) + "</html>");
         } else {
-            vista.Mensaje("Aguarde en línea... Ud. se encuentra a " + sector.getLlamadasEnEspera().size() + " llamadas de ser \n"
-                    + "atendido, la espera estimada es de " + sector.esperaEstimada() + " minutos.");
+            vista.Mensaje("<html>Aguarde en línea... <br>Ud. se encuentra a " + sector.getLlamadasEnEspera().size() + " llamadas de ser \n"
+                    + "atendido, <br>la espera estimada es de " + sector.esperaEstimada() + " minutos.</html>");
         }
     }
 
