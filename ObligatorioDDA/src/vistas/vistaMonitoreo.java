@@ -136,6 +136,7 @@ public class vistaMonitoreo extends javax.swing.JDialog implements iVistaMonitor
         }
     }
 
+    @Override
     public void mostrarTabla() {
         DefaultTableModel model = (DefaultTableModel) tblListaSectores.getModel();
         model.setNumRows(0);
