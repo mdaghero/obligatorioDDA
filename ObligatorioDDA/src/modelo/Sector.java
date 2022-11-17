@@ -108,8 +108,7 @@ public class Sector {
     }
 
     public Puesto asignarLlamada(Llamada llamada) {
-        
-        llamada.setNumero(numeroLlamadaSector++);
+        if(!llamadasEnEspera.contains(llamada)) llamada.setNumero(numeroLlamadaSector++);
         for (Puesto p : puestos) {
             if (p.getTrabajador() != null && p.getLlamadaEnCurso() == null) {
                 llamada.setFechaInicio(new Date());
@@ -119,7 +118,7 @@ public class Sector {
                 return p;
             }
         }
-        this.llamadasEnEspera.add(llamada);
+        if(!llamadasEnEspera.contains(llamada)) this.llamadasEnEspera.add(llamada);
         return null;
     }
 
@@ -145,6 +144,7 @@ public class Sector {
             this.llamadasAtendidas.add(llamada);
             if (!this.llamadasEnEspera.isEmpty()) {
                 llamadasEnEspera.get(0).puestoLibre();
+                //for(Llamada l:llamadasEnEspera) {l.puestoLibre();}
             }
         }
     }
